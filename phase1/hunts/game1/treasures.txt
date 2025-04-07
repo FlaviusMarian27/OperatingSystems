@@ -1,1 +1,2 @@
 F10,Flavius,45.549854,80.415466,Sub podul de piatra,300
+I80,Ion,78.588882,6.125163,Langa magazinul de inghetata,50

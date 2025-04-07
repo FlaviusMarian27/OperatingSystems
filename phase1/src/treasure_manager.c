@@ -21,6 +21,12 @@ int main(int argc, char *argv[]) {
             exit(-1);
         }
         list_treasure(argv[2]);
+    }else if(strcmp(argv[1],"view") == 0){
+        if( argc < 4 ){
+            perror("Trebuie: ./p view <hunt_id> <treasure_id>\n");
+            exit(-1);
+        }
+        view_treasure(argv[2],argv[3]);
     }else{
         perror("Comanda necunoscuta");
         exit(-1);

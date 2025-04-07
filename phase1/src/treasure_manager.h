@@ -22,4 +22,6 @@ void add_treasure(const char* hunt_id);
 
 void list_treasure(const char* hunt_id);
 
+void view_treasure(const char *hunt_id, const char *treasure_id);
+
 #endif
