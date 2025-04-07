@@ -33,24 +33,33 @@ void add_treasure(const char* hunt_id){
         exit(-1);
     }
 
+    char buffer[128];
     TreasureHunt t;
-    printf("ID: "); 
-    scanf("%s", t.ID);
 
-    printf("User: "); 
-    scanf("%s", t.username);
+    write(1, "ID: ", 4);
+    read(0, buffer, sizeof(buffer));
+    sscanf(buffer, "%s", t.ID);
 
-    printf("Latitude: "); 
-    scanf("%f", &t.gps_location.latitude);
+    write(1, "User: ", 6);
+    read(0, buffer, sizeof(buffer));
+    sscanf(buffer, "%s", t.username);
 
-    printf("Longitude: "); 
-    scanf("%f", &t.gps_location.longitude);
+    write(1, "Latitude: ", 10);
+    read(0, buffer, sizeof(buffer));
+    sscanf(buffer, "%f", &t.gps_location.latitude);
 
-    printf("Clue: "); 
-    scanf(" %[^\n]", t.clue_text);
+    write(1, "Longitude: ", 11);
+    read(0, buffer, sizeof(buffer));
+    sscanf(buffer, "%f", &t.gps_location.longitude);
 
-    printf("Value: "); 
-    scanf("%d", &t.value);
+    write(1, "Clue: ", 6);
+    read(0, buffer, sizeof(buffer));
+    sscanf(buffer, " %[^\n]", t.clue_text);
+
+    write(1, "Value: ", 7);
+    read(0, buffer, sizeof(buffer));
+    sscanf(buffer, "%d", &t.value);
+
 
     char line[512];
     int len = snprintf(line, sizeof(line), "%s,%s,%.6f,%.6f,%s,%d\n",
