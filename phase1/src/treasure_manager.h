@@ -20,4 +20,6 @@ typedef struct{
 
 void add_treasure(const char* hunt_id);
 
+void list_treasure(const char* hunt_id);
+
 #endif

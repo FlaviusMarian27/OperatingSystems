@@ -11,11 +11,17 @@ int main(int argc, char *argv[]) {
 
     if (strcmp(argv[1], "add") == 0) {
         if (argc < 3) {
-            perror("Trebuie introdus si hunt_id-ul!\n");
+            perror("Trebuie: ./p add <hunt_id>\n!\n");
             exit(-1);
         }
         add_treasure(argv[2]);
-    } else {
+    }else if(strcmp(argv[1],"list") == 0){
+        if( argc < 3 ){
+            perror("Trebuie: ./p list <hunt_id>\n");
+            exit(-1);
+        }
+        list_treasure(argv[2]);
+    }else{
         perror("Comanda necunoscuta");
         exit(-1);
     }

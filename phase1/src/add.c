@@ -10,14 +10,14 @@
 void add_treasure(const char* hunt_id){
     
     //creeare daca nu exista
-    if( mkdir("hunts",0755) == -1 && errno != EEXIST){
+    if( mkdir("../hunts",0755) == -1 && errno != EEXIST){
         perror("Eroare la mkdir hunts!\n");
         exit(-1);
     }
 
     //creeaza subdirectorul ex: hunts/game1 -> rezulta o cale completa
     char directory_path[128];
-    snprintf(directory_path,sizeof(directory_path),"hunts/%s",hunt_id);
+    snprintf(directory_path,sizeof(directory_path),"../hunts/%s",hunt_id);
     if( mkdir(directory_path,0755) == -1 && errno != EEXIST){
         perror("Erroare la directory_path!\n");
         exit(-1);
