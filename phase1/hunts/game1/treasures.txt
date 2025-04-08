@@ -2,3 +2,4 @@ F10,Flavius,45.549854,80.415466,Sub podul de piatra,300
 G921,Geo,87.324844,48.165600,Langa masina de culoare rosie, din parcarea din spatele blocului,190
 R89,Razvan,78.254898,1.565656,Langa statuia lui Mihai Eminescu din parcul mare,110
 T10,Teodor,78.599541,88.564468,In parcarea de la stadion,50
+F0213,Florin,79.461563,23.456465,Pe plaja din Mamaia,45

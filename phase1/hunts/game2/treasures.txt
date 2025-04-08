@@ -1,1 +1,2 @@
 M82,Marius,78.235596,91.126656,Langa pomul cel mai mare,120
+AL9123,Alin,78.461166,45.654999,La coltul gardului din piatra de pe parte cu drumul,29
