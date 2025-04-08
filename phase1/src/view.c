@@ -14,8 +14,8 @@ void view_treasure(const char *hunt_id, const char *treasure_id){
 
     int fd = open(file_path,O_RDONLY);
     if( fd < 0 ){
-        perror("Eroare la deschiderea fisierului treasure.txt din view!\n");
-        exit(-1);
+        write(1, "Hunt-ul nu exista!\n", 19);
+        return;
     }
 
     char character;
