@@ -27,6 +27,12 @@ int main(int argc, char *argv[]) {
             exit(-1);
         }
         view_treasure(argv[2],argv[3]);
+    }else if (strcmp(argv[1], "remove_treasure") == 0) {
+        if (argc < 4) {
+            perror("Usage: ./p remove_treasure <hunt_id> <id>\n");
+            exit(-1);
+        }
+        remove_treasure(argv[2], argv[3]);
     }else{
         perror("Comanda necunoscuta");
         exit(-1);

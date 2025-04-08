@@ -1,3 +1,3 @@
 F10,Flavius,45.549854,80.415466,Sub podul de piatra,300
-I80,Ion,78.588882,6.125163,Langa magazinul de inghetata,50
 G921,Geo,87.324844,48.165600,Langa masina de culoare rosie, din parcarea din spatele blocului,190
+R89,Razvan,78.254898,1.565656,Langa statuia lui Mihai Eminescu din parcul mare,110
