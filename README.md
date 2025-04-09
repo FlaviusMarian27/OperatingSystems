@@ -134,7 +134,8 @@ Sau utilizează direct script-ul pentru automatizare:
 
 ## Detalii adiționale
 
-- Folosește doar apeluri de sistem (`open()`, `read()`, `write()`, `unlink()`, `rmdir()` etc.), fără funcții standard `printf` și `scanf`.
-- Sunt utilizate simbolic link-uri pentru acces rapid la log-urile fiecărui joc.
+- Pentru interacțiunea cu utilizatorul (input/output), sunt utilizate funcțiile standard `scanf` și `printf`.
+- Pentru operațiile pe fișiere, sunt folosite exclusiv apeluri de sistem: `open()`, `read()`, `write()`, `unlink()`, `rmdir()`, `mkdir()`, `lseek()`, `stat()` etc.
+- Se folosesc symbolic links pentru acces rapid la fișierul `logged_hunt` al fiecărui joc.
 
 ---
