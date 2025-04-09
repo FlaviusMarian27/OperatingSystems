@@ -57,8 +57,10 @@ Structurile utilizate:
 **Funcție:** `add_treasure(const char* hunt_id)`
 
 - Creează directorul pentru hunt dacă nu există.
-- Adaugă datele unei noi comori în fișierul `treasures.txt` din hunt-ul specificat.
-- Creează un fișier de log numit `logged_hunt` și un symbolic link către acesta în directorul părinte al aplicației.
+- Verifică dacă ID-ul comorii există deja în fișierul `treasures.txt`. Dacă da, operația este anulată și utilizatorul este informat.
+- Adaugă datele unei noi comori în fișierul `treasures.txt` din hunt-ul specificat, în format text CSV.
+- Creează sau actualizează fișierul de log `logged_hunt` cu acțiunea curentă.
+- Creează (la prima adăugare) un link simbolic în directorul principal al aplicației, sub forma `logged_hunt-<hunt_id>`, pentru acces rapid la log-ul acelui hunt.
 
 ### list.c
 
