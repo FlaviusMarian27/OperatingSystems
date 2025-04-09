@@ -1,4 +1,4 @@
-# Treasure Manager Project
+# Treasure Manager Project (Phase 1)
 
 ## Descriere generală
 
