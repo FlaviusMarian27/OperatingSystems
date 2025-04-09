@@ -10,9 +10,7 @@
 void view_treasure(const char *hunt_id, const char *treasure_id){
 
     char file_path[256];
-    strcpy(file_path, "../hunts/");
-    strcat(file_path, hunt_id);
-    strcat(file_path, "/treasures.txt");
+    snprintf(file_path, sizeof(file_path), "../hunts/%s/treasures.txt", hunt_id);
 
     int fd = open(file_path,O_RDONLY);
     if( fd < 0 ){

@@ -11,9 +11,7 @@
 void list_treasure(const char* hunt_id){
 
     char file_path[256];
-    strcpy(file_path, "../hunts/");
-    strcat(file_path, hunt_id);
-    strcat(file_path, "/treasures.txt");
+    snprintf(file_path, sizeof(file_path), "../hunts/%s/treasures.txt", hunt_id);
 
     //pt obtinerea informatiilor din fisierul dorit
     struct stat st;
@@ -28,20 +26,10 @@ void list_treasure(const char* hunt_id){
     strftime(time_buffer, sizeof(time_buffer), "%Y-%m-%d %H:%M:%S", mod_time);
 
     char header[512];
-    strcpy(header, "Hunt: ");
-    strcat(header, hunt_id);
-    strcat(header, "\nFile size: ");
-
-    //adaugare dimensiunea fisier
-    char size_str[32];
-    sprintf(size_str, "%ld", st.st_size);
-    strcat(header, size_str);
-
-    strcat(header, " bytes\nLast modified: ");
-    strcat(header, time_buffer);
-    strcat(header, "\n=======\n");
-
-    write(1,header,strlen(header));
+    int len = snprintf(header, sizeof(header),
+        "Hunt: %s\nFile size: %ld bytes\nLast modified: %s\n=======\n",
+        hunt_id, st.st_size, time_buffer);
+    write(1, header, len);
     
     //deschidere fisier pt citire valori
     int fd = open(file_path,O_RDONLY);

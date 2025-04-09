@@ -17,8 +17,7 @@ void add_treasure(const char* hunt_id){
 
     //creeaza subdirectorul ex: hunts/game1 -> rezulta o cale completa
     char directory_path[128];
-    strcpy(directory_path, "../hunts/");
-    strcat(directory_path, hunt_id);
+    snprintf(directory_path, sizeof(directory_path), "../hunts/%s", hunt_id);
     
     if( mkdir(directory_path,0755) == -1 && errno != EEXIST){
         write(1,"Eroare la directory_path!\n",27);
@@ -27,8 +26,7 @@ void add_treasure(const char* hunt_id){
 
     //calea catre fisierul treasure.txt
     char file_path[256];
-    strcpy(file_path, directory_path);
-    strcat(file_path, "/treasures.txt");
+    snprintf(file_path, sizeof(file_path), "%s/treasures.txt", directory_path);
 
     int fd = open(file_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
     if( fd < 0 ){
@@ -73,16 +71,12 @@ void add_treasure(const char* hunt_id){
 
     //logged_hunt
     char log_path[256];
-    strcpy(log_path, directory_path);
-    strcat(log_path, "/logged_hunt");
+    snprintf(log_path, sizeof(log_path), "%s/logged_hunt", directory_path);
     
     int log_fd = open(log_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
     if (log_fd >= 0) {
         char log_entry[256];
-        strcpy(log_entry, "ADD ");
-        strcat(log_entry, t.ID);
-        strcat(log_entry, "\n");
-        int log_len = strlen(log_entry);
+        int log_len = snprintf(log_entry, sizeof(log_entry), "ADD %s\n", t.ID);
 
         write(log_fd, log_entry, log_len);
         
@@ -93,13 +87,10 @@ void add_treasure(const char* hunt_id){
     }
 
     char target[256];
-    strcpy(target, "../hunts/");
-    strcat(target, hunt_id);
-    strcat(target, "/logged_hunt");
+    snprintf(target, sizeof(target), "../hunts/%s/logged_hunt", hunt_id);
 
     char linkname[256];
-    strcpy(linkname, "../logged_hunt-");
-    strcat(linkname, hunt_id);
+    snprintf(linkname, sizeof(linkname), "../logged_hunt-%s", hunt_id);
 
     if(symlink(target, linkname) < 0){
         write(1, "Eroare la crearea symbolic link-ului! Probabil ca exista deja!\n", 63);
