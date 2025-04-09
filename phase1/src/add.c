@@ -54,6 +54,41 @@ void add_treasure(const char* hunt_id){
     printf("Value: ");
     scanf("%d", &t.value);
 
+    //verificare id unic
+    int check_fd = open(file_path,O_RDONLY);
+    if( check_fd >= 0 ){
+        char character;
+        char lines[512];
+        int index = 0;
+        while(read(check_fd,&character,1) == 1){
+            lines[index++] = character;
+            
+            if( character == '\n'){
+                lines[index++] = '\0';
+
+                char existing_id[32];
+                int index2 = 0;
+                while(lines[index2] != ',' && lines[index2] != '\0' && index2 < (int)sizeof(existing_id) - 1){
+                    existing_id[index2] = lines[index2];
+                    index2 = index2 + 1;
+                }
+                existing_id[index2] = '\0';
+
+                if( strcmp(existing_id,t.ID) == 0 ){
+                    write(1, "Eroare: ID-ul exista deja in acest hunt!\n", 42);
+                    close(check_fd);
+                    return;
+                }
+                index = 0;
+            }
+
+            if (index >= sizeof(lines) - 1){
+                index = 0; // pt overflow
+            }
+        }
+        close(check_fd);
+    }
+
     char line[512];
     int len = snprintf(line, sizeof(line), "%s,%s,%.6f,%.6f,%s,%d\n",
                         t.ID, t.username,

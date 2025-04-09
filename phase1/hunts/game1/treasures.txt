@@ -1,3 +1,2 @@
-F10,Flavius,12.656899,80.356560,Sub podul de piatra din parcul mare,100
-M12,Marius,14.599878,50.995956,Langa masina de culoare rosie,78
-G12,Geo,14.684684,78.456566,In parcare la stadion,41
+F10,Flavius,14.549487,89.454002,Sub podul de piatra,100
+AL12,Alin,78.461548,96.414764,Langa copacul cel mai mare,78
