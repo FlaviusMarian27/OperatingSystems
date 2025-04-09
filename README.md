@@ -18,16 +18,19 @@ phase1/
 │   │   ├── treasures.txt
 │   │   └── logged_hunt
 │   └── gameN/...
-└── src/
-    ├── treasure_manager.c
-    ├── treasure_manager.h
-    ├── add.c
-    ├── list.c
-    ├── view.c
-    ├── removeTreasure.c
-    ├── removeHunt.c
-    ├── script_build.sh
-    └── Makefile (opțional)
+├── src/
+|   ├── treasure_manager.c
+|   ├── treasure_manager.h
+|   ├── add.c
+|   ├── list.c
+|   ├── view.c
+|   ├── removeTreasure.c
+|   ├── removeHunt.c
+|   └── script_build.sh
+├── logged_hunt-game1
+├── logged_hunt-game2
+├── ....
+└── logged_hunt-gameN  
 ```
 
 ## Detalii fișiere și funcții
