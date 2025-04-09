@@ -11,26 +11,29 @@ void add_treasure(const char* hunt_id){
     
     //creeare daca nu exista
     if( mkdir("../hunts",0755) == -1 && errno != EEXIST){
-        perror("Eroare la mkdir hunts!\n");
-        exit(-1);
+        write(1,"Eroare la mkdir hunts!\n",24);
+        return;
     }
 
     //creeaza subdirectorul ex: hunts/game1 -> rezulta o cale completa
     char directory_path[128];
-    snprintf(directory_path,sizeof(directory_path),"../hunts/%s",hunt_id);
+    strcpy(directory_path, "../hunts/");
+    strcat(directory_path, hunt_id);
+    
     if( mkdir(directory_path,0755) == -1 && errno != EEXIST){
-        perror("Erroare la directory_path!\n");
-        exit(-1);
+        write(1,"Eroare la directory_path!\n",27);
+        return;
     }
 
     //calea catre fisierul treasure.txt
     char file_path[256];
-    snprintf(file_path,sizeof(file_path),"%s/treasures.txt",directory_path);
+    strcpy(file_path, directory_path);
+    strcat(file_path, "/treasures.txt");
 
     int fd = open(file_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
     if( fd < 0 ){
-        perror("Erroare la open treasures.txt!\n");
-        exit(-1);
+        write(1,"Eroare la open treasures.txt!\n",31);
+        return;
     }
 
     TreasureHunt t;
@@ -64,29 +67,39 @@ void add_treasure(const char* hunt_id){
     }
     
     if( close(fd) < 0 ){
-        perror("Eroare la inchiderea treasures.txt!\n");
-        exit(-1);
+        write(1,"Eroare la inchiderea treasures.txt!\n",37);
+        return;
     }
 
     //logged_hunt
     char log_path[256];
-    snprintf(log_path, sizeof(log_path), "%s/logged_hunt", directory_path);
+    strcpy(log_path, directory_path);
+    strcat(log_path, "/logged_hunt");
+    
     int log_fd = open(log_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
     if (log_fd >= 0) {
         char log_entry[256];
-        int log_len = snprintf(log_entry, sizeof(log_entry), "ADD %s\n", t.ID);
+        strcpy(log_entry, "ADD ");
+        strcat(log_entry, t.ID);
+        strcat(log_entry, "\n");
+        int log_len = strlen(log_entry);
+
         write(log_fd, log_entry, log_len);
+        
         if( close(log_fd) < 0 ){
-            perror("Eroare la inchiderea logged_hunt!\n");
-            exit(-1);
+            write(1,"Eroare la inchiderea logged_hunt!\n",35);
+            return;
         }
     }
 
     char target[256];
-    snprintf(target, sizeof(target), "../hunts/%s/logged_hunt", hunt_id);
+    strcpy(target, "../hunts/");
+    strcat(target, hunt_id);
+    strcat(target, "/logged_hunt");
 
     char linkname[256];
-    snprintf(linkname, sizeof(linkname), "../logged_hunt-%s", hunt_id);
+    strcpy(linkname, "../logged_hunt-");
+    strcat(linkname, hunt_id);
 
     if(symlink(target, linkname) < 0){
         write(1, "Eroare la crearea symbolic link-ului! Probabil ca exista deja!\n", 63);

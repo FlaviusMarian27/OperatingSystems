@@ -1,2 +1,1 @@
-DR10,Dragos,45.565689,23.625145,Langa copacul cel mai mare,80
-A92,Alin,78.266548,10.441548,Langa masina rosie,50
+A565,Alin,78.415634,89.566467,Langa copacul cel inflorit,50

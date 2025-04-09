@@ -10,7 +10,9 @@
 void view_treasure(const char *hunt_id, const char *treasure_id){
 
     char file_path[256];
-    snprintf(file_path,sizeof(file_path),"../hunts/%s/treasures.txt",hunt_id);
+    strcpy(file_path, "../hunts/");
+    strcat(file_path, hunt_id);
+    strcat(file_path, "/treasures.txt");
 
     int fd = open(file_path,O_RDONLY);
     if( fd < 0 ){
@@ -56,7 +58,7 @@ void view_treasure(const char *hunt_id, const char *treasure_id){
     }
 
     if( close(fd) < 0 ){
-        perror("Eroare la inchiderea fisierului treasure.txt din view!\n");
-        exit(-1);
+        write(1,"Eroare la inchiderea fisierului treasure.txt din view!\n",56);
+        return;
     }
 }

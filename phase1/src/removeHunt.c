@@ -8,7 +8,8 @@
 
 void remove_hunt(const char* hunt_id){
     char directory_path[256];
-    snprintf(directory_path, sizeof(directory_path), "../hunts/%s", hunt_id);
+    strcpy(directory_path, "../hunts/");
+    strcat(directory_path, hunt_id);
 
     char file_path[512];
 
@@ -22,7 +23,9 @@ void remove_hunt(const char* hunt_id){
 
     while((d = readdir(directory)) != NULL){
         if(strcmp(d->d_name, ".") != 0 && strcmp(d->d_name, "..") != 0){
-            snprintf(file_path, sizeof(file_path), "%s/%s", directory_path, d->d_name);
+            strcpy(file_path, directory_path);
+            strcat(file_path, "/");
+            strcat(file_path, d->d_name);
 
             if(unlink(file_path) < 0){
                 write(1, "Eroare la stergerea fisierului!\n", 32);
@@ -42,8 +45,10 @@ void remove_hunt(const char* hunt_id){
         return;
     }
 
+    //stergere link simbolic
     char symlink_path[256];
-    snprintf(symlink_path, sizeof(symlink_path), "../logged_hunt-%s", hunt_id);
+    strcpy(symlink_path, "../logged_hunt-");
+    strcat(symlink_path, hunt_id);
 
     if (unlink(symlink_path) == 0) {
         write(1, "Symbolic link sters cu succes!\n", 32);

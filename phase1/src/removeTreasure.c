@@ -8,26 +8,32 @@
 
 void remove_treasure(const char *hunt_id, const char *treasure_id){
     
+    char original_file_path[256];
+    strcpy(original_file_path, "../hunts/");
+    strcat(original_file_path, hunt_id);
+    strcat(original_file_path, "/treasures.txt");
+
     char temp_path[256];
-    snprintf(temp_path,sizeof(temp_path),"../hunts/%s/treasures_temp.txt", hunt_id);
+    strcpy(temp_path, "../hunts/");
+    strcat(temp_path, hunt_id);
+    strcat(temp_path, "/treasures_temp.txt");
 
     char log_path[256];
-    snprintf(log_path,sizeof(log_path),"../hunts/%s/logged_hunt", hunt_id);
-
-    char original_file_path[256];
-    snprintf(original_file_path,sizeof(original_file_path),"../hunts/%s/treasures.txt", hunt_id);
+    strcpy(log_path, "../hunts/");
+    strcat(log_path, hunt_id);
+    strcat(log_path, "/logged_hunt");
     
     int input_fd = open(original_file_path,O_RDONLY);
     if(input_fd < 0){
-        perror("Eroare la deschidere la treasure.txt!\n");
-        exit(-1);
+        write(1, "Eroare la deschidere treasures.txt!\n", 37);
+        return;
     }
 
     int output_fd = open(temp_path,O_WRONLY | O_CREAT | O_TRUNC, 0644);
     if (output_fd < 0) {
-        perror("Eroare la crearea fisierului temporar");
+        write(1, "Eroare la crearea fisierului temporar!\n", 40);
         close(input_fd);
-        exit(-1);
+        return;
     }
 
     char character;
@@ -79,11 +85,14 @@ void remove_treasure(const char *hunt_id, const char *treasure_id){
         int log_fd = open(log_path, O_WRONLY | O_CREAT | O_APPEND, 0644);
         if (log_fd >= 0) {
             char log_entry[256];
-            int log_len = snprintf(log_entry, sizeof(log_entry), "REMOVE %s\n", treasure_id);
-            write(log_fd, log_entry, log_len);
+            strcpy(log_entry, "REMOVE ");
+            strcat(log_entry, treasure_id);
+            strcat(log_entry, "\n");
+
+            write(log_fd, log_entry, strlen(log_entry));
             if( close(log_fd) < 0 ){
-                perror("Eroare la inchiderea logged_hunt!\n");
-                exit(-1);
+                write(1,"Eroare la inchiderea logged_hunt!\n",35);
+                return;
             }
         }
 

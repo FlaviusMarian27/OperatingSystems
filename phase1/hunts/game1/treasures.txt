@@ -1,4 +1,3 @@
-F10,Flavius,78.451492,45.164688,Langa podul din piatra,100
-M10,Marius,45.265945,89.251564,In parcarea de la stadion,75
-AL04,Alex,16.548468,45.251656,In cetatea din oras,45
-E100,Ene,14.564998,18.456455,La statuie,52
+F10,Flavius,12.656899,80.356560,Sub podul de piatra din parcul mare,100
+M12,Marius,14.599878,50.995956,Langa masina de culoare rosie,78
+G12,Geo,14.684684,78.456566,In parcare la stadion,41
