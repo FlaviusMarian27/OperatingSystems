@@ -17,7 +17,12 @@ phase1/
 │   ├── game2/
 │   │   ├── treasures.txt
 │   │   └── logged_hunt
-│   └── gameN/...
+│   ├── ...
+|   |
+│   └── gameN/
+|       ├── treasures.txt
+│       └── logged_hunt
+|
 ├── src/
 |   ├── treasure_manager.c
 |   ├── treasure_manager.h
@@ -27,6 +32,7 @@ phase1/
 |   ├── removeTreasure.c
 |   ├── removeHunt.c
 |   └── script_build.sh
+|
 ├── logged_hunt-game1
 ├── logged_hunt-game2
 ├── ....
@@ -79,6 +85,7 @@ Structurile utilizate:
 **Funcție:** `remove_hunt(const char* hunt_id)`
 
 - Șterge complet un hunt, inclusiv toate comorile și fișierul log asociat.
+- Practic după ștergere, ștergem și legătura simbolică a hunt-ului.
 
 ### script_build.sh
 
