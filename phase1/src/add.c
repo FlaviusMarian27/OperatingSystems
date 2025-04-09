@@ -37,22 +37,40 @@ void add_treasure(const char* hunt_id){
     TreasureHunt t;
 
     printf("ID: ");
-    scanf("%s", t.ID);
+    if(scanf("%s", t.ID) != 1){
+        write(1, "Eroare la citirea ID-ului!\n", 28);
+        return;
+    }
 
     printf("User: ");
-    scanf("%s", t.username);
+    if(scanf("%s", t.username) != 1){
+        write(1, "Eroare la citirea numelui utilizatorului!\n", 43);
+        return;
+    }
 
     printf("Latitude: ");
-    scanf("%f", &t.gps_location.latitude);
+    if(scanf("%f", &t.gps_location.latitude) != 1){
+        write(1, "Eroare la citirea latitudinii!\n", 32);
+        return;
+    }
 
     printf("Longitude: ");
-    scanf("%f", &t.gps_location.longitude);
+    if(scanf("%f", &t.gps_location.longitude) != 1){
+        write(1, "Eroare la citirea longitudinii!\n", 33);
+        return;
+    }
 
     printf("Clue: ");
-    scanf(" %[^\n]", t.clue_text);
+    if(scanf(" %[^\n]", t.clue_text) != 1){
+        write(1, "Eroare la citirea indiciului!\n", 31);
+        return;
+    }
 
     printf("Value: ");
-    scanf("%d", &t.value);
+    if(scanf("%d", &t.value) != 1){
+        write(1, "Eroare la citirea valorii comorii!\n", 36);
+        return;
+    }
 
     //verificare id unic
     int check_fd = open(file_path,O_RDONLY);
@@ -62,7 +80,7 @@ void add_treasure(const char* hunt_id){
         int index = 0;
         while(read(check_fd,&character,1) == 1){
             lines[index++] = character;
-            
+
             if( character == '\n'){
                 lines[index++] = '\0';
 

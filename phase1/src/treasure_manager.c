@@ -6,7 +6,7 @@
 
 int main(int argc, char* argv[]) {
     if(argc < 2) {
-        write(1, "Argumente insuficiente! Trebuie ./p <operation> <hunt_name>\n", 57);
+        write(1, "Argumente insuficiente! Trebuie ./p <operation> <hunt_name>\n", 60);
         exit(-1);
     }
 
