@@ -89,7 +89,7 @@ void add_treasure(const char* hunt_id){
     snprintf(linkname, sizeof(linkname), "../logged_hunt-%s", hunt_id);
 
     if(symlink(target, linkname) < 0){
-        write(1, "Eroare la crearea symbolic link-ului! Probabil ca exista deja!\n", 62);
+        write(1, "Eroare la crearea symbolic link-ului! Probabil ca exista deja!\n", 63);
     }else{
         write(1, "Symbolic link creat cu succes!\n", 31);
     }

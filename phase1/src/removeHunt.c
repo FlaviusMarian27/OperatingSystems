@@ -42,5 +42,14 @@ void remove_hunt(const char* hunt_id){
         return;
     }
 
+    char symlink_path[256];
+    snprintf(symlink_path, sizeof(symlink_path), "../logged_hunt-%s", hunt_id);
+
+    if (unlink(symlink_path) == 0) {
+        write(1, "Symbolic link sters cu succes!\n", 32);
+    } else {
+        write(1, "Symbolic link inexistent sau deja sters.\n", 42);
+    }
+
     write(1, "Hunt sters cu succes!\n", 22);
 }
