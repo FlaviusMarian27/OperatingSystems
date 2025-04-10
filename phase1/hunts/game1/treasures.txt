@@ -1,2 +1,2 @@
-F10,Flavius,14.549487,89.454002,Sub podul de piatra,100
-AL12,Alin,78.461548,96.414764,Langa copacul cel mai mare,78
+F10,Flavius,78.479790,96.454849,Sub podul de piatra,100
+A10,Alex,14.645455,48.484989,Langa copacul cel mare,50
