@@ -27,7 +27,7 @@ void list_treasure(const char* hunt_id){
 
     char header[512];
     int len = snprintf(header, sizeof(header),
-        "Hunt: %s\nFile size: %ld bytes\nLast modified: %s\n=======\n",
+        "Hunt: %s\nFile size: %ld bytes\nLast modified: %s\n=============================\n",
         hunt_id, st.st_size, time_buffer);
     write(1, header, len);
     

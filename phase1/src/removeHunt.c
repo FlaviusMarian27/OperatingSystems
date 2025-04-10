@@ -26,7 +26,7 @@ void remove_hunt(const char* hunt_id){
 
             if(unlink(file_path) < 0){
                 write(1, "Eroare la stergerea fisierului!\n", 32);
-                closedir(directory);
+                closedir(directory);  
                 return;
             }
         }
