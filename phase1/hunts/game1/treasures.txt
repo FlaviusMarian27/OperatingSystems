@@ -1,2 +1,4 @@
-F10,Flavius,78.479790,96.454849,Sub podul de piatra,100
-A10,Alex,14.645455,48.484989,Langa copacul cel mare,50
+F10,Flavius,78.654419,96.165657,Sub podul de piatra,100
+AL10,Alex,78.659470,56.625656,Langa masina rosie,85
+G85,Geo,8.596595,80.449600,La masina de inghetata,20
+V89,Victor,88.565666,-93.565567,La mare,64

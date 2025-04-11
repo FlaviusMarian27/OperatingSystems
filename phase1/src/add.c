@@ -140,14 +140,19 @@ void add_treasure(const char* hunt_id){
     }
 
     char target[256];
-    snprintf(target, sizeof(target), "../hunts/%s/logged_hunt", hunt_id);
+    snprintf(target, sizeof(target), "hunts/%s/logged_hunt", hunt_id);
 
     char linkname[256];
     snprintf(linkname, sizeof(linkname), "../logged_hunt-%s", hunt_id);
 
-    if(symlink(target, linkname) < 0){
-        write(1, "Eroare la crearea symbolic link-ului! Probabil ca exista deja!\n", 63);
-    }else{
-        write(1, "Symbolic link creat cu succes!\n", 31);
+    if (access(linkname, F_OK) == 0) {
+        write(1, "Symbolic link deja exista.\n", 28);
+    } else {
+        if (symlink(target, linkname) == -1) {
+            write(1, "Eroare la crearea symbolic link-ului!\n", 39);
+        } else {
+            write(1, "Symbolic link creat cu succes!\n", 31);
+        }
     }
+    
 }
