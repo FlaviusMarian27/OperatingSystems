@@ -15,7 +15,7 @@ phase1/
 │   │   ├── treasures.dat
 │   │   └── logged_hunt
 │   ├── game2/
-│   │   ├── treasures..dat
+│   │   ├── treasures.dat
 │   │   └── logged_hunt
 │   ├── ...
 |   |
