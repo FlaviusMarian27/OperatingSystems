@@ -4,7 +4,7 @@
 
 Proiectul "Treasure Manager" este o aplicație scrisă în C, care permite gestionarea unor jocuri (hunts), fiecare conținând mai multe "comori" (treasures). Fiecare comoară este identificată printr-un ID unic și conține informații precum numele utilizatorului care a creat-o, coordonatele GPS, un indiciu și o valoare numerică asociată.
 
-Toate informațiile sunt organizate în fișiere text, structurate pe directoare separate pentru fiecare hunt.
+Toate informațiile sunt organizate în fișiere binare, structurate pe directoare separate pentru fiecare hunt.
 
 ## Structura proiectului
 
@@ -12,15 +12,15 @@ Toate informațiile sunt organizate în fișiere text, structurate pe directoare
 phase1/
 ├── hunts/
 │   ├── game1/
-│   │   ├── treasures.txt
+│   │   ├── treasures.dat
 │   │   └── logged_hunt
 │   ├── game2/
-│   │   ├── treasures.txt
+│   │   ├── treasures..dat
 │   │   └── logged_hunt
 │   ├── ...
 |   |
 │   └── gameN/
-|       ├── treasures.txt
+|       ├── treasures.dat
 │       └── logged_hunt
 |
 ├── src/
@@ -57,8 +57,8 @@ Structurile utilizate:
 **Funcție:** `add_treasure(const char* hunt_id)`
 
 - Creează directorul pentru hunt dacă nu există.
-- Verifică dacă ID-ul comorii există deja în fișierul `treasures.txt`. Dacă da, operația este anulată și utilizatorul este informat.
-- Adaugă datele unei noi comori în fișierul `treasures.txt` din hunt-ul specificat, în format text CSV.
+- Verifică dacă ID-ul comorii există deja în fișierul `treasures.dat`. Dacă da, operația este anulată și utilizatorul este informat.
+- Adaugă datele unei noi comori în fișierul `treasures.dat` din hunt-ul specificat.
 - Creează sau actualizează fișierul de log `logged_hunt` cu acțiunea curentă.
 - Creează (la prima adăugare) un link simbolic în directorul principal al aplicației, sub forma `logged_hunt-<hunt_id>`, pentru acces rapid la log-ul acelui hunt.
 
