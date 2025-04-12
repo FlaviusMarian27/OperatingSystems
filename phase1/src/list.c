@@ -11,7 +11,7 @@
 void list_treasure(const char* hunt_id){
 
     char file_path[256];
-    snprintf(file_path, sizeof(file_path), "../hunts/%s/treasures.txt", hunt_id);
+    snprintf(file_path, sizeof(file_path), "../hunts/%s/treasures.dat", hunt_id);
 
     //pt obtinerea informatiilor din fisierul dorit
     struct stat st;
@@ -38,22 +38,17 @@ void list_treasure(const char* hunt_id){
         return;
     }
 
-    //afisare continut
-    char character;
+    TreasureHunt treasurehunt;
     char line[512];
-    int index = 0;
 
-    while( read(fd,&character,1) == 1 ){
-        line[index++] = character;
-        if( character == '\n'){
-            write(1,line,index);
-            index = 0;
-        }
-
-        if( index >= sizeof(line) - 1 ){
-            index = 0; // pt cazul cand avem depasire de memorie(overflow)
-        }
-    }
+    while( read(fd,&treasurehunt,sizeof(TreasureHunt)) == sizeof(TreasureHunt) ){
+        int len = snprintf(line,sizeof(line),
+                "ID: %s | User: %s | Lat: %.6f | Long: %.6f | Clue: %s | Value: %d\n",
+                treasurehunt.ID,treasurehunt.username,treasurehunt.gps_location.latitude,
+                treasurehunt.gps_location.longitude,treasurehunt.clue_text,treasurehunt.value
+        );
+        write(1,line,len);
+    }   
 
     if( close(fd) < 0 ){
         write(1, "Eroare la inchiderea fisierului treasures.txt!\n", 48);
