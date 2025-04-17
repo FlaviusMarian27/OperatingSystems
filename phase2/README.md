@@ -1,4 +1,4 @@
-# 🗺️ Treasure Manager (Phase 2)
+# Treasure Manager (Phase 2)
 
 Acest proiect extinde aplicația din Etapa 1 (`Treasure Manager`) prin introducerea unui nou modul interactiv, numit `treasure_hub`, care comunică cu un proces de fundal (`monitor`) folosind **semnale Unix**.
 
