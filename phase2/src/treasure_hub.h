@@ -2,6 +2,7 @@
 #define TREASURE_HUB_H
 
 #include <sys/types.h>
+#include "../../phase1/src/treasure_manager.h"
 
 extern pid_t monitor_pid;
 
