@@ -9,13 +9,16 @@ Acest proiect extinde aplicația din Etapa 1 (`Treasure Manager`) prin introduce
 ```
 phase2/
 ├── src/
-│   ├── treasure_hub.c       # programul principal cu meniu interactiv
-│   ├── treasure_hub.h       # prototipuri funcții și variabile globale
-│   ├── start_monitor.c      # lansează procesul monitor (fork + execl)
-│   ├── stop_monitor.c       # trimite semnal de oprire către monitor
-│   ├── monitor.c            # proces de fundal care așteaptă semnale
-│   ├── script_build2.sh     # script de compilare și lansare
-│   └── (alte fișiere - dacă e cazul)
+│   ├── treasure_hub.c          # Programul principal cu meniul interactiv
+│   ├── treasure_hub.h          # Header cu prototipuri și variabile globale
+│   ├── start_monitor.c         # Lansează procesul monitor
+│   ├── stop_monitor.c          # Trimite semnal SIGINT pentru a opri monitorul
+│   ├── list_hunts.c            # Trimite semnal SIGUSR1 (afișează toate hunt-urile)
+│   ├── list_treasure.c         # Trimite semnal SIGUSR2 (afișează comorile unui hunt)
+│   ├── view_treasure.c         # Trimite semnal SIGTERM (afișează detalii despre o comoară)
+│   ├── monitor.c               # Procesul monitor – rulează în fundal și răspunde la semnale
+│   ├── script_build2.sh        # Script de compilare (generează `p` și `monitor`)
+|
 ```
 
 ---
@@ -44,6 +47,9 @@ phase2/
 ### ✅ `stop_monitor.c`
 - Trimite semnal `SIGUSR2` către `monitor`.
 - Așteaptă închiderea cu `waitpid()` și afișează statusul.
+
+### ✅ `list_hunts.c`, `list_treasure.c`, `view_treasure.c`
+- Fiecare din aceste fișiere trimite semnale către `monitor` pentru operații specifice.
 
 ---
 
