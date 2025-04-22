@@ -21,10 +21,9 @@ void handle_sigusr1(int sig) {
 void handle_sigusr2(int sig) {
     char hunt[100];
     write(1, "\n[Monitor] Introdu id-ul hunt-ului: ", 37);
-    if(scanf("%s", hunt) != 1){
-        write(1, "Eroare la citirea valorii huntului!\n", 37);
-        return;
-    }
+
+    scanf("%s", hunt);
+    hunt[strcspn(hunt, "\n")] = '\0';
 
     list_treasure(hunt);
 }
