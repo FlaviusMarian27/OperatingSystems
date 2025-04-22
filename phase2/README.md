@@ -29,9 +29,9 @@ phase2/
 - Meniu interactiv:
   - Start monitor
   - Stop monitor
-  - (viitor) List hunts
-  - (viitor) List treasures
-  - (viitor) View treasure
+  - List hunts
+  - List treasures
+  - View treasure
   - Exit
 - Comunicarea se face prin semnale Unix (`kill`, `sigaction`).
 
