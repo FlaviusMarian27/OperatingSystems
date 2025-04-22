@@ -4,6 +4,7 @@
 #include <unistd.h>
 #include <string.h>
 #include "../../phase1/src/treasure_manager.h"
+#include "treasure_hub.h"
 
 volatile sig_atomic_t running = 1;
 
@@ -12,8 +13,6 @@ void handle_sigusr1(int sig) {
     write(1, "\n[Monitor] Semnal primit: list_hunts\n", 37);
 
     list_treasure("game1");
-    list_treasure("game2");
-    list_treasure("game3");
 }
 
 // Handler pentru listarea comorilor dintr-un anumit hunt
@@ -71,7 +70,7 @@ int main() {
         exit(EXIT_FAILURE);
     }
 
-    // SIGINT or SIGQUIT - oprește programul
+    // SIGINT or SIGQUIT - opreste programul
     sa.sa_handler = handle_exit;
     if(sigaction(SIGINT, &sa, NULL) == -1){
         perror("Eroare la sigaction SIGINT");

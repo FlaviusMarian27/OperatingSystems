@@ -11,7 +11,7 @@ void stop_monitor(){
         return;
     }
 
-    if(kill(monitor_pid,SIGUSR2) == -1){
+    if(kill(monitor_pid,SIGINT) == -1){
         printf("Eroare la trimiterea semnalului catre monitor!\n");
         return;
     }
