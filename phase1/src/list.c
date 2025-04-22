@@ -16,7 +16,7 @@ void list_treasure(const char* hunt_id){
     //pt obtinerea informatiilor din fisierul dorit
     struct stat st;
     if(stat(file_path,&st) == -1){
-        write(1, "Eroare! Fisierul treasures.txt nu exista!\n", 43);
+        write(1, "Eroare! Fisierul treasures.dat nu exista!\n", 43);
         return;
     }
 
@@ -34,7 +34,7 @@ void list_treasure(const char* hunt_id){
     //deschidere fisier pt citire valori
     int fd = open(file_path,O_RDONLY);
     if( fd < 0 ){
-        write(1, "Eroare la deschiderea treasures.txt pentru citire!\n", 52);
+        write(1, "Eroare la deschiderea treasures.dat pentru citire!\n", 52);
         return;
     }
 
@@ -51,7 +51,7 @@ void list_treasure(const char* hunt_id){
     }   
 
     if( close(fd) < 0 ){
-        write(1, "Eroare la inchiderea fisierului treasures.txt!\n", 48);
+        write(1, "Eroare la inchiderea fisierului treasures.dat!\n", 48);
         return;
     }
 }
