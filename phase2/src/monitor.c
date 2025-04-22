@@ -13,6 +13,8 @@ void handle_sigusr1(int sig) {
     write(1, "\n[Monitor] Semnal primit: list_hunts\n", 37);
 
     list_treasure("game1");
+    list_treasure("game2");
+    list_treasure("game3");
 }
 
 // Handler pentru listarea comorilor dintr-un anumit hunt
@@ -45,6 +47,12 @@ void handle_exit(int sig) {
 }
 
 int main() {
+    //Schimbam directorul curent pentru a functiona cu ../hunts/ corect
+    if (chdir("../../phase1/src") != 0) {
+        perror("Eroare la chdir");
+        exit(1);
+    }
+
     struct sigaction sa;// decalram structuraa de tip 'sigaction' pt configurarea handler-ului de semnal
     
     // SIGUSR1 - list_hunts
