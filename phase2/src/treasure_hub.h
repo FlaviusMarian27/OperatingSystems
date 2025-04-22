@@ -8,8 +8,8 @@ extern pid_t monitor_pid;
 
 pid_t start_monitor();
 void stop_monitor();
-void list_hunts();
-void list_treasures();
-void view_treasure();
+void list_hunts_signal();
+void list_treasure_signal();
+void view_treasure_signal();
 
 #endif

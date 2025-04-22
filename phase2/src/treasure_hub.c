@@ -32,6 +32,8 @@ int main( void ){
                     }else{
                         printf("Monitorul deja ruleaza!\n");
                     }
+                }else{
+                    printf("Monitorul deja ruleaza!\n");
                 }
                 break;
 
@@ -45,16 +47,28 @@ int main( void ){
                 }
                 break;
                 
-            case 3:
-
+            case 3:// List hunts
+                if (monitor_pid != -1) {
+                    kill(monitor_pid, SIGUSR1);
+                } else {
+                    printf("Monitorul nu este pornit!\n");
+                }
                 break;
 
-            case 4:
-
+            case 4:// List treasures
+                if (monitor_pid != -1) {
+                    kill(monitor_pid, SIGUSR2);
+                } else {
+                    printf("Monitorul nu este pornit!\n");
+                }
                 break;
                 
-            case 5:
-
+            case 5:// View treasures
+                if (monitor_pid != -1) {
+                    kill(monitor_pid, SIGTERM);
+                } else {
+                    printf("Monitorul nu este pornit!\n");
+                }
                 break;
 
             case 6:
