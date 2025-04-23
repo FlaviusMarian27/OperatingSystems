@@ -137,7 +137,7 @@ int main() {
         exit(-1);
     }
 
-    write(1, "Monitor: Pornit si in asteptare semnale...\n", 44);
+    write(1, "\nMonitor: Pornit si in asteptare semnale...\n", 44);
 
     // Ruleaza pana la semnalul SIGUSR2
     while (running) {
