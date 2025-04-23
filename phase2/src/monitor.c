@@ -3,6 +3,9 @@
 #include <signal.h>
 #include <unistd.h>
 #include <string.h>
+#include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include "../../phase1/src/treasure_manager.h"
 #include "treasure_hub.h"
 
@@ -20,24 +23,71 @@ void handle_sigusr1(int sig) {
 // Handler pentru listarea comorilor dintr-un anumit hunt
 void handle_sigusr2(int sig) {
     char hunt[100];
-    write(1, "\n[Monitor] Introdu id-ul hunt-ului: ", 37);
+    
+    int fd = open("../../phase2/src/hub_command.txt",O_RDONLY);
+    if(fd < 0){
+        write(1, "Monitor: Nu se poate deschide hub_command.txt\n", 47);
+        return;
+    }
 
-    scanf("%s", hunt);
+    int bytes_read = read(fd, hunt, sizeof(hunt) - 1);
+    if(bytes_read <= 0){
+        write(1, "Monitor: Eroare citire din hub_command.txt\n", 44);
+        if(close(fd) < 0){
+            write(1,"Eroare 1 la inchiderea hun_command.txt!\n",41);
+            return;
+        }
+        return;
+    }
+
+    hunt[bytes_read] = '\0';
     hunt[strcspn(hunt, "\n")] = '\0';
+
+    if(close(fd) < 0){
+        write(1,"Eroare 2 la inchiderea hun_command.txt!\n",41);
+        return;
+    }
 
     list_treasure(hunt);
 }
 
 // Handler pentru afisarea detaliilor unei comori
 void handle_sigterm(int sig) {
-    char hunt[100]; 
-    char treasure[100];
+    char buffer[200];
+    char hunt[100], treasure[100];
 
-    write(1, "\n[Monitor] Hunt id: ", 21);
-    scanf("%s", hunt);
+    int fd = open("../../phase2/src/hub_command.txt", O_RDONLY);
+    if (fd < 0) {
+        write(1, "Monitor: Nu pot deschide hub_command.txt\n", 42);
+        return;
+    }
 
-    write(1, "Treasure id: ", 14);
-    scanf("%s", treasure);
+    int bytes_read = read(fd, buffer, sizeof(buffer) - 1);
+    if (bytes_read <= 0) {
+        write(1, "Monitor: Eroare citire din hub_command.txt\n", 44);
+        if(close(fd) < 0){
+            write(1,"Eroare 3 la inchiderea hun_command.txt!\n",41);
+            return;
+        }
+        return;
+    }
+
+    buffer[bytes_read] = '\0';
+    if(close(fd) < 0){
+        write(1,"Eroare 4 la inchiderea hun_command.txt!\n",41);
+        return;
+    }
+
+    char *newline_pos = strchr(buffer, '\n');
+    if (newline_pos == NULL) {
+        write(1, "Format incorect in hub_command.txt\n", 35);
+        return;
+    }
+
+    *newline_pos = '\0';
+    strcpy(hunt, buffer);
+    strcpy(treasure, newline_pos + 1);
+    treasure[strcspn(treasure, "\n")] = '\0';
 
     view_treasure(hunt, treasure);
 }

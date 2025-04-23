@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include <unistd.h>
 #include <signal.h>
 #include <sys/types.h>
+#include <sys/stat.h>
+#include <fcntl.h>
 #include <sys/wait.h>
 #include "treasure_hub.h"
 
@@ -57,15 +60,44 @@ int main( void ){
 
             case 4:// List treasures
                 if (monitor_pid != -1) {
-                    kill(monitor_pid, SIGUSR2);
-                } else {
+                    char hunt[100];
+                    printf("Introdu id-ul hunt-ului: ");
+                    scanf("%s", hunt);
+                    int fd = open("hub_command.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                    if(fd < 0){
+                        perror("Nu se poate deschide hub_command.txt!");
+                    }else{
+                        write(fd, hunt, strlen(hunt));
+                        if(close(fd) < 0){
+                            perror("Eroare(4) la inchiderea fisierului hub_command.txt!\n");
+                            return 0;
+                        }
+                        kill(monitor_pid, SIGUSR2);
+                    }
+                }else{
                     printf("Monitorul nu este pornit!\n");
                 }
                 break;
                 
             case 5:// View treasures
                 if (monitor_pid != -1) {
-                    kill(monitor_pid, SIGTERM);
+                    char hunt[100], treasure[100];
+                    printf("Introdu id-ul hunt-ului: ");
+                    scanf("%s", hunt);
+                    printf("Introdu id-ul comorii: ");
+                    scanf("%s", treasure);
+
+                    int fd = open("hub_command.txt", O_WRONLY | O_CREAT | O_TRUNC, 0644);
+                    if (fd < 0) {
+                        perror("Nu pot deschide hub_command.txt");
+                    } else {
+                        dprintf(fd, "%s\n%s", hunt, treasure);//scrierea formatataa intr un descriptor de fisier specificat
+                        if(close(fd) < 0){
+                            perror("Eroare(5) la inchiderea fisierului hub_command.txt!\n");
+                            return 0;
+                        }
+                        kill(monitor_pid, SIGTERM);
+                    }
                 } else {
                     printf("Monitorul nu este pornit!\n");
                 }
