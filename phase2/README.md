@@ -38,14 +38,14 @@ phase2/
 ### ✅ `monitor.c`
 - Proces de fundal care:
   - Așteaptă semnale.
-  - Se oprește la `SIGUSR2`.
+  - Se oprește la `SIGTERM`.
   - Va putea trata și `SIGUSR1`, `SIGUSR2`, etc., pentru a afișa hunt-uri sau comori.
 
 ### ✅ `start_monitor.c`
 - Creează un nou proces `monitor` folosind `fork()` și `execl()`.
 
 ### ✅ `stop_monitor.c`
-- Trimite semnal `SIGUSR2` către `monitor`.
+- Trimite semnal `SIGTERM` către `monitor`.
 - Așteaptă închiderea cu `waitpid()` și afișează statusul.
 
 ### ✅ `list_hunts.c`, `list_treasure.c`, `view_treasure.c`
