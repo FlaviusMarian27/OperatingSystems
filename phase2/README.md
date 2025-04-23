@@ -85,7 +85,7 @@ Monitor pornit cu PID: 7623
 ```
 
 Dacă monitorul este deja pornit, va apărea un mesaj corespunzător.
-Când alegi `Stop monitor`, se trimite semnalul `SIGUSR2` către monitor, iar acesta se închide elegant.
+Când alegi `Stop monitor`, se trimite semnalul `SIGTERM` către monitor, iar acesta se închide elegant.
 
 ---
 
