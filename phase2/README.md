@@ -91,13 +91,10 @@ Când alegi `Stop monitor`, se trimite semnalul `SIGUSR2` către monitor, iar ac
 
 ## 💡 Tehnologii folosite
 
-- 📌 Apeluri de sistem:
-  - `fork()`, `execl()`, `kill()`, `waitpid()`, `sigaction()`, `pause()`
-- 📌 Semnale:
-  - `SIGUSR2` (pentru oprire)
-  - `SIGUSR1`, `SIGTERM`, etc. (posibilități de extindere)
-- 📌 `volatile sig_atomic_t`:
-  - Utilizat pentru ca handler-ul să poată modifica variabile globale în siguranță.
+- 📌 Apeluri de sistem: fork(), execl(), kill(), waitpid(), sigaction(), pause()
+- 📌 Semnale: SIGUSR1, SIGUSR2, SIGTERM, SIGINT
+- 📌 Comunicare prin fișiere: open(), read(), write(), dprintf()
+- 📌 Variabilă globală volatile sig_atomic_t running pentru control terminare
 
 ---
 
