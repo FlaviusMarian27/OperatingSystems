@@ -109,7 +109,7 @@ int main() {
     
     // SIGUSR1 - list_hunts
     sa.sa_handler = handle_sigusr1;//setare functie hadler
-    sigemptyset(&sa.sa_mask);//pt nu bloca alte semnale in handler
+    sigemptyset(&sa.sa_mask);//pt nu  a bloca alte semnale in handler
     sa.sa_flags = 0;
     if(sigaction(SIGUSR1, &sa, NULL) == -1){
         perror("Eroare la sigaction SIGUSR1");
