@@ -5,7 +5,7 @@
 #include "../../phase1/src/treasure_manager.h"
 
 extern pid_t monitor_pid;
-extern int monitor_pipe_fd[2];
+extern int pipe_fd[2];
 
 pid_t start_monitor();
 void stop_monitor();

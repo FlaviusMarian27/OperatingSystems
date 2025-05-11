@@ -24,7 +24,7 @@ void handle_sigusr1(int sig) {
 void handle_sigusr2(int sig) {
     char hunt[100];
     
-    int fd = open("../../phase2/src/hub_command.txt",O_RDONLY);
+    int fd = open("../../phase3/src/hub_command.txt",O_RDONLY);
     if(fd < 0){
         write(1, "Monitor: Nu se poate deschide hub_command.txt\n", 47);
         return;
@@ -56,7 +56,7 @@ void handle_sigterm(int sig) {
     char buffer[200];
     char hunt[100], treasure[100];
 
-    int fd = open("../../phase2/src/hub_command.txt", O_RDONLY);
+    int fd = open("../../phase3/src/hub_command.txt", O_RDONLY);
     if (fd < 0) {
         write(1, "Monitor: Nu pot deschide hub_command.txt\n", 42);
         return;
@@ -105,37 +105,10 @@ int main() {
         exit(1);
     }
 
-    struct sigaction sa;// decalram structuraa de tip 'sigaction' pt configurarea handler-ului de semnal
-    
-    // SIGUSR1 - list_hunts
-    sa.sa_handler = handle_sigusr1;//setare functie hadler
-    sigemptyset(&sa.sa_mask);//pt nu  a bloca alte semnale in handler
-    sa.sa_flags = 0;
-    if(sigaction(SIGUSR1, &sa, NULL) == -1){
-        perror("Eroare la sigaction SIGUSR1");
-        exit(-1);
-    }
-
-    // SIGUSR2 - list_treasures
-    sa.sa_handler = handle_sigusr2;
-    if(sigaction(SIGUSR2, &sa, NULL) == -1){
-        perror("Eroare la sigaction SIGUSR2");
-        exit(-1);
-    }
-
-    // SIGTERM - view_treasure
-    sa.sa_handler = handle_sigterm;
-    if(sigaction(SIGTERM, &sa, NULL) == -1){
-        perror("Eroare la sigaction SIGTERM");
-        exit(EXIT_FAILURE);
-    }
-
-    // SIGINT or SIGQUIT - opreste programul
-    sa.sa_handler = handle_exit;
-    if(sigaction(SIGINT, &sa, NULL) == -1){
-        perror("Eroare la sigaction SIGINT");
-        exit(-1);
-    }
+    signal(SIGUSR1, handle_sigusr1);
+    signal(SIGUSR2, handle_sigusr2);
+    signal(SIGTERM, handle_sigterm);
+    signal(SIGINT, handle_exit);
 
     write(1, "\nMonitor: Pornit si in asteptare semnale...\n", 44);
 

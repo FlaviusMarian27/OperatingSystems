@@ -8,7 +8,7 @@ gcc treasure_hub.c \
     view_treasure.c \
     ../../phase1/src/list.c \
     ../../phase1/src/view.c \
-    -o treasure_hub
+    -o p
 
 gcc monitor.c \
     ../../phase1/src/list.c \

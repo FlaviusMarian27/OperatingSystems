@@ -10,6 +10,18 @@
 #include "treasure_hub.h"
 
 pid_t monitor_pid = -1;
+int pipe_fd[2];
+
+void read_from_monitor(){
+    char buffer[2048];
+    int n = read(pipe_fd[0],buffer, sizeof(buffer)-1);
+    if (n > 0){
+        buffer[n] = '\0';
+        printf("\n--- Raspuns Monitor ---\n%s\n", buffer);
+    }else{
+        printf("Eroare sau pipe gol la citire.\n");
+    }
+}
 
 int main( void ){
 
@@ -45,6 +57,7 @@ int main( void ){
                     stop_monitor();
                     waitpid(monitor_pid, NULL, 0);
                     monitor_pid = -1;
+                    close(pipe_fd[0]);
                 }else{
                     printf("Monitorul nu este pornit.\n");
                 }
@@ -53,6 +66,8 @@ int main( void ){
             case 3:// List hunts
                 if (monitor_pid != -1) {
                     kill(monitor_pid, SIGUSR1);
+                    sleep(1);
+                    read_from_monitor();
                 } else {
                     printf("Monitorul nu este pornit!\n");
                 }
@@ -73,6 +88,8 @@ int main( void ){
                             return 0;
                         }
                         kill(monitor_pid, SIGUSR2);
+                        sleep(1);
+                        read_from_monitor();
                     }
                 }else{
                     printf("Monitorul nu este pornit!\n");
@@ -97,6 +114,8 @@ int main( void ){
                             return 0;
                         }
                         kill(monitor_pid, SIGTERM);
+                        sleep(1);
+                        read_from_monitor();
                     }
                 } else {
                     printf("Monitorul nu este pornit!\n");
