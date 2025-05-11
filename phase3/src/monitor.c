@@ -111,6 +111,9 @@ int main() {
     signal(SIGTERM, handle_sigterm);
     signal(SIGINT, handle_exit);
 
+    // dezactiveaza buffering ul pt stdoutt unde toate iesirile printf() vor fi trimise imediat fara sa fie transmise in buffer
+    setvbuf(stdout, NULL, _IONBF, 0);
+
     write(1, "\nMonitor: Pornit si in asteptare semnale...\n", 44);
 
     while (running) {
