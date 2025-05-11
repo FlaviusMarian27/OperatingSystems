@@ -90,6 +90,7 @@ void handle_sigterm(int sig) {
     treasure[strcspn(treasure, "\n")] = '\0';
 
     view_treasure(hunt, treasure);
+
 }
 
 // Handler pentru oprirea monitorului (SIGINT)
