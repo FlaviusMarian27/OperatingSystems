@@ -18,7 +18,7 @@ int main(int argc, char* argv[]){
         return 1;
     }
 
-    const char *hunts[] = argv[1];
+    const char *hunt_id = argv[1];
     
     char path[256];
     snprintf(path, sizeof(path),"../../phase1/hunts/%s/treasures.dat",hunt_id);
@@ -26,7 +26,7 @@ int main(int argc, char* argv[]){
     int fd = open(path, O_RDONLY);
     if (fd < 0) {
         perror("Eroare la deschiderea fisierului!");
-        return;
+        return 0;
     }
 
     ScoreEntry entries[MAX_USERS];
@@ -52,7 +52,7 @@ int main(int argc, char* argv[]){
 
     if(close(fd) < 0){
         perror("Eroare la inchiderea fisierului!");
-        return;
+        return 0;
     }
 
     for (int i = 0; i < n_entries; i++) {

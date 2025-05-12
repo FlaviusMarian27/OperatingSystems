@@ -16,7 +16,7 @@ gcc monitor.c \
     ../../phase1/src/view.c \
     -o monitor
 
-gcc calculate_scores.c \
-    -o calculate_scores
+gcc calculate_score.c \
+    -o calculate_score
 
 echo "Build complet!"
