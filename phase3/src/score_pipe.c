@@ -31,7 +31,7 @@ void calculate_scores_with_pipe(){
             close(pipe_fd[0]);
             dup2(pipe_fd[1], STDOUT_FILENO);
             close(pipe_fd[1]);
-            execl("./calculate_scores", "calculate_scores", hunts[i], NULL);
+            execl("./calculate_score", "calculate_score", hunts[i], NULL);
             perror("Eroare la execl monitor!\n");
             exit(1);
         }

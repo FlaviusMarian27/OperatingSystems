@@ -125,7 +125,11 @@ int main( void ){
                 break;
             
             case 6:
-                calculate_scores_with_pipe();
+                if (monitor_pid != -1) {
+                    calculate_scores_with_pipe();
+                } else {
+                    printf("Monitorul nu este pornit!\n");
+                }
                 break;
 
             case 7:
