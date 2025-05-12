@@ -34,7 +34,8 @@ int main( void ){
         printf("3. List hunts\n");
         printf("4. List treasures\n");
         printf("5. View treasure\n");
-        printf("6. Exit\n");
+        printf("6. Score users\n");
+        printf("7. Exit\n");
         printf("Select: ");
         scanf("%d", &option);
 
@@ -121,8 +122,12 @@ int main( void ){
                     printf("Monitorul nu este pornit!\n");
                 }
                 break;
-
+            
             case 6:
+                calculate_scores();
+                break;
+
+            case 7:
                 if(monitor_pid != -1){
                     printf("Monitorul este inca activ/pornit! Opreste-l intai!\n");
                 }else{
