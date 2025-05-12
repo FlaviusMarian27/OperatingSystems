@@ -22,7 +22,7 @@ void calculate_scores(void) {
 
         // Construim calea catre fisierelee binarre ale hunt ului
         char path[256];
-        snprintf(path, sizeof(path),"../phase1/src/%s/treasures.dat",hunt_id);
+        snprintf(path, sizeof(path),"../../phase1/hunts/%s/treasures.dat",hunt_id);
 
         int fd = open(path, O_RDONLY);
         if (fd < 0) {
@@ -36,14 +36,14 @@ void calculate_scores(void) {
         while(read(fd,&treasure_hunt,sizeof(treasure_hunt)) == sizeof(treasure_hunt)){
             int found = 0;
             for(int i = 0; i < n_entries; i++){
-                if(strcmp(entries[i].username,treasure_hunt.username)){
+                if(strcmp(entries[i].username,treasure_hunt.username) == 0){
                     entries[i].score = entries[i].score + treasure_hunt.value;
                     found = 1;
                     break;
                 }
             }
 
-            if(found != 0 && n_entries < MAX_USERS){
+            if(found == 0 && n_entries < MAX_USERS){
                 strncpy(entries[n_entries].username,treasure_hunt.username,sizeof(entries[n_entries].username) - 1);
                 entries[n_entries].username[sizeof(entries[n_entries].username) - 1] = '\0';
                 entries[n_entries].score = treasure_hunt.value;

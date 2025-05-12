@@ -38,6 +38,7 @@ int main( void ){
         printf("7. Exit\n");
         printf("Select: ");
         scanf("%d", &option);
+        while (getchar()!='\n');
 
         switch(option){
             case 1:
