@@ -125,7 +125,7 @@ int main( void ){
                 break;
             
             case 6:
-                calculate_scores();
+                calculate_scores_with_pipe();
                 break;
 
             case 7:

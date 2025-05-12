@@ -12,6 +12,6 @@ void stop_monitor();
 void list_hunts_signal();
 void list_treasure_signal();
 void view_treasure_signal();
-void calculate_scores();
+void calculate_scores_with_pipe();
 
 #endif
