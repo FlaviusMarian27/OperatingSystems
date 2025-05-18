@@ -37,14 +37,16 @@ void calculate_scores_with_pipe(){
         }
 
         close(pipe_fd[1]);
+
+        //itim din pipe raspunsul
         char buf[256];
         ssize_t n;
         while ((n = read(pipe_fd[0], buf, sizeof(buf) - 1)) > 0) {
             buf[n] = '\0';
-            fputs(buf, stdout);
+            fputs(buf, stdout);//transformam in string si afisam la stdout
         }
         close(pipe_fd[0]);
-        waitpid(pid, NULL, 0);
+        waitpid(pid, NULL, 0);//asteptam ca procesul copil sa se incheie
     }   
 
 }
